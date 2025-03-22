@@ -1,0 +1,42 @@
+# Build settings
+[build]
+  publish = "dist" # Sesuaikan dengan direktori output build Anda (misalnya "build", "dist", "public")
+  command = "npm run build" # Sesuaikan dengan perintah build Anda
+
+# Redirect untuk memastikan path models dapat diakses
+[[redirects]]
+  from = "/public/models/*"
+  to = "/models/:splat"
+  status = 200
+  force = true
+
+# Redirect untuk memastikan file di folder models dapat diakses langsung
+[[redirects]]
+  from = "/models/*"
+  to = "/models/:splat"
+  status = 200
+
+# Redirect fallback untuk semua route lainnya (SPA)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Header khusus untuk file GLB/GLTF
+[[headers]]
+  for = "*.glb"
+  [headers.values]
+    Content-Type = "model/gltf-binary"
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "*.gltf"
+  [headers.values]
+    Content-Type = "model/gltf+json"
+    Cache-Control = "public, max-age=604800"
+
+# Header untuk asset statis lainnya
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
