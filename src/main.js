@@ -19,7 +19,7 @@ scene.add(directionalLight);
 
 // Muat model garasi
 const loaderGARAGE = new GLTFLoader();
-loaderGARAGE.load('/src/models/garage.glb', (gltf) => {
+loaderGARAGE.load('/public/models/garage.glb', (gltf) => {
     scene.add(gltf.scene); // Tambahkan scene dari model GLB
     gltf.scene.position.set(11, 0, 3); // Sesuaikan posisi model
     gltf.scene.scale.set(5, 5, 5); // Sesuaikan skala model jika perlu
@@ -65,7 +65,7 @@ function loadCar(modelPath) {
 }
 
 // Muat mobil pertama secara default
-loadCar('/src/models/2020_dodge_challenger_srt_super_stock.glb');
+loadCar('/public/models/2020_dodge_challenger_srt_super_stock.glb');
 
 // Definisikan jalur kamera berbentuk kotak
 const points = [
@@ -134,7 +134,7 @@ radioButtons.forEach(radio => {
     radio.addEventListener('change', () => {
         if (radio.checked) {
             const selectedCar = radio.value; // Ambil nilai dari radio button yang dipilih
-            loadCar(`/src/models/${selectedCar}`); // Muat model berdasarkan pilihan radio button
+            loadCar(`/public/models/${selectedCar}`); // Muat model berdasarkan pilihan radio button
         }
     });
 });
